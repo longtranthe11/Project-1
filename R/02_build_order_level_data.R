@@ -40,9 +40,9 @@ stopifnot(nrow(joined)==nrow(orders), !anyDuplicated(joined$order_id))
 
 # Construct dates with the same conventions used throughout the analysis.
 joined <- joined |>
-  dplyr::mutate(purchase_dt=lubridate::ymd_hms(order_purchase_timestamp, quiet=TRUE),
-                delivered_dt=lubridate::ymd_hms(order_delivered_customer_date, quiet=TRUE),
-                estimated_dt=lubridate::ymd_hms(order_estimated_delivery_date, quiet=TRUE),
+  dplyr::mutate(purchase_dt = order_purchase_timestamp,
+                delivered_dt = order_delivered_customer_date,
+                estimated_dt = order_estimated_delivery_date,
                 delivery_days=as.numeric(difftime(delivered_dt, purchase_dt, units="days")),
                 days_late=pmax(0, as.numeric(as.Date(delivered_dt)-as.Date(estimated_dt))),
                 late_delivery=as.integer(as.Date(delivered_dt)>as.Date(estimated_dt)),
@@ -68,5 +68,8 @@ cat("Share delivered late:",round(mean(analysis$late_delivery)*100,2),"%\n")
 cat("Freight ratio quantiles:\n")
 print(stats::quantile(analysis$freight_ratio, c(0,.25,.50,.75,.95,.99,1)))
 dir.create("data/processed", recursive=TRUE, showWarnings=FALSE)
+if (nrow(analysis) == 0) {
+  stop("Analysis contains 0 orders. Check date columns and filtering rules.")
+}
 readr::write_csv(analysis,"data/processed/olist_analysis_orders.csv")
 cat("Saved data/processed/olist_analysis_orders.csv\n")
