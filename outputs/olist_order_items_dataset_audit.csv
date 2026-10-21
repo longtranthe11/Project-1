@@ -1,0 +1,8 @@
+column,type,missing_n,missing_pct
+order_id,character,0,0
+order_item_id,numeric,0,0
+product_id,character,0,0
+seller_id,character,0,0
+shipping_limit_date,POSIXct/POSIXt,0,0
+price,numeric,0,0
+freight_value,numeric,0,0

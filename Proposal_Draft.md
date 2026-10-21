@@ -1,4 +1,4 @@
-# Proposal Draft (for discussion — not yet a final proposal)
+# Proposal Draft 
 
 ## Working title
 **What Matters More: Fast Delivery or Low Shipping Fees? Delivery Performance, Freight Costs, and Customer Satisfaction in Brazilian E-Commerce**
@@ -43,11 +43,3 @@ One completed/delivered order with a nonmissing review score and sufficiently co
 
 ## Portfolio output
 A reproducible R repository and Quarto webpage explaining motivation, data pipeline, visuals, models, business implications, and research limitations.
-
-## To verify before proposal submission
-- [ ] Successfully import 3 CSVs in RStudio
-- [ ] Identify whether each order has exactly one review; choose and justify duplicates policy
-- [ ] Record delivered-order sample size and missingness by variable
-- [ ] Inspect freight-ratio extremes and delivery-date logic
-- [ ] Generate at least one descriptive visualization from actual data
-- [ ] Verify interpretation of results; do not write invented findings
